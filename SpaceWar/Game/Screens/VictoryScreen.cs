@@ -23,6 +23,7 @@ namespace Spacewar
     public class VictoryScreen : FullScreenSplash
     {
         private static string victoryScreen = @"textures\victory";
+        Texture2D mainTexture;
         private int winningPlayerNumber;
         private SceneItem ship;
 
@@ -32,6 +33,7 @@ namespace Spacewar
         public VictoryScreen(Game game)
             : base(game, victoryScreen, TimeSpan.Zero, GameState.LogoSplash)
         {
+            mainTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + victoryScreen);
             Sound.PlayCue(Sounds.TitleMusic);
 
             //Whoever won we need to render their ship.
@@ -71,7 +73,6 @@ namespace Spacewar
                 IGraphicsDeviceService graphicsService = (IGraphicsDeviceService)game.Services.GetService(typeof(IGraphicsDeviceService));
 
                 GraphicsDevice device = graphicsService.GraphicsDevice;
-                Texture2D mainTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + victoryScreen);
 
                 SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque);
                 device.DepthStencilState = DepthStencilState.DepthRead;

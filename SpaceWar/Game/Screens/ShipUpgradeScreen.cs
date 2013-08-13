@@ -25,6 +25,7 @@ namespace Spacewar
     public class ShipUpgradeScreen : Screen
     {
         private static string upgradeTexture = @"textures\weapon_select_FINAL";
+        Texture2D mainTexture;
         private Vector4 white = new Vector4(1f, 1f, 1f, 1f);
         private Vector4 upgradeFontColor = new Vector4(.882f, .596f, .286f, 1f);
         private const int countSpeed = 3;
@@ -68,6 +69,8 @@ namespace Spacewar
         public ShipUpgradeScreen(Game game)
             : base(game)
         {
+            mainTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + upgradeTexture);
+
             //Play the menu music
             menuMusic = Sound.Play(Sounds.MenuMusic);
             weapons[0] = new SceneItem(game, new EvolvedShape(game, EvolvedShapes.Weapon, PlayerIndex.One, (int)ProjectileType.Peashooter, LightingType.Menu), new Vector3(-170, -30, 0));
@@ -243,7 +246,6 @@ namespace Spacewar
             IGraphicsDeviceService graphicsService = (IGraphicsDeviceService)GameInstance.Services.GetService(typeof(IGraphicsDeviceService));
 
             GraphicsDevice device = graphicsService.GraphicsDevice;
-            Texture2D mainTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + upgradeTexture);
 
             SpriteBatch.Begin(SpriteSortMode.Texture, BlendState.Opaque);
 

@@ -23,6 +23,8 @@ namespace Spacewar
         /// Current pressed state of the gamepads
         /// </summary>
         private static GamePads gamePads = new GamePads();
+        private static KeyboardState keyState;
+
 
         #region Properties
         public static GamePads GamePads
@@ -32,13 +34,21 @@ namespace Spacewar
                 return gamePads;
             }
         }
+        public static KeyboardState KeyState
+        {
+            get
+            {
+                return keyState;
+            }
+        }
         #endregion
 
         /// <summary>
         /// Update the state so presses can be detected - this should be called once per frame
         /// </summary>
-        public static void Update(Game game, KeyboardState keyState)
+        public static void Update(Game game)
         {
+            keyState = Keyboard.GetState();
             gamePads.Update(game, keyState);
         }
     }

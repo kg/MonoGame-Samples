@@ -24,6 +24,7 @@ namespace Spacewar
     public class SelectionScreen : Screen
     {
         private static string selectionTexture = @"textures\ship_select_FINAL";
+        Texture2D mainTexture;
         private Vector4 white = new Vector4(1f, 1f, 1f, 1f);
 
         private SceneItem[] ships = new SceneItem[2];
@@ -41,6 +42,8 @@ namespace Spacewar
         public SelectionScreen(Game game)
             : base(game)
         {
+            mainTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + selectionTexture);
+
             //Start menu music
             menuMusic = Sound.Play(Sounds.MenuMusic);
 
@@ -154,7 +157,6 @@ namespace Spacewar
             IGraphicsDeviceService graphicsService = (IGraphicsDeviceService)GameInstance.Services.GetService(typeof(IGraphicsDeviceService));
 
             GraphicsDevice device = graphicsService.GraphicsDevice;
-            Texture2D mainTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + selectionTexture);
 
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque);
 

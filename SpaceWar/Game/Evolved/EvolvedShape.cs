@@ -344,7 +344,7 @@ namespace Spacewar
             pointColorParam.SetValue(SpacewarGame.Settings.ShipLights[scene].PointColor);
             pointFactorParam.SetValue(SpacewarGame.Settings.ShipLights[scene].PointFactor);
 
-            normalTextureParam.SetValue((Texture2D)null); //Normal maps not currently used
+            //normalTextureParam.SetValue((Texture2D)null); //Normal maps not currently used
         }
 
         public void CreateShip()
@@ -391,9 +391,9 @@ namespace Spacewar
             base.Render();            
             
             worldParam.SetValue(World);
-            inverseWorldParam.SetValue(Matrix.Invert(World));
+            if(inverseWorldParam != null) inverseWorldParam.SetValue(Matrix.Invert(World));
             worldViewProjectionParam.SetValue(World * SpacewarGame.Camera.View * SpacewarGame.Camera.Projection);
-            viewPositionParam.SetValue(new Vector4(SpacewarGame.Camera.ViewPosition, 0));
+            if(viewPositionParam != null) viewPositionParam.SetValue(new Vector4(SpacewarGame.Camera.ViewPosition, 0));
 
             if (shape == EvolvedShapes.Ship)
             {

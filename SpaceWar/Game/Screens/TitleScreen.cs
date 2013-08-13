@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 #endregion
 
 namespace Spacewar
@@ -25,6 +26,8 @@ namespace Spacewar
     {
         private bool showInfo;
         private bool playRetro;
+        Texture2D infoTexture;
+        Texture2D buttonTexture;
 
         /// <summary>
         /// Creates a new titlescreen
@@ -32,7 +35,8 @@ namespace Spacewar
         public TitleScreen(Game game)
             : base(game, @"textures\spacewar_title_FINAL", TimeSpan.Zero, GameState.ShipSelection)
         {
-
+            infoTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + @"textures\info_screen");
+            buttonTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + @"textures\title_button_overlay");
         }
 
         /// <summary>
@@ -44,13 +48,13 @@ namespace Spacewar
         public override GameState Update(TimeSpan time, TimeSpan elapsedTime)
         {
             //X displays the intro screen
-            if (XInputHelper.GamePads[PlayerIndex.One].XPressed || XInputHelper.GamePads[PlayerIndex.Two].XPressed)
+            if (XInputHelper.GamePads[PlayerIndex.One].XPressed || XInputHelper.GamePads[PlayerIndex.Two].XPressed || XInputHelper.KeyState.IsKeyDown(Keys.X))
             {
                 showInfo = true;
             }
 
             //B plays retro or cancels info screen
-            if (XInputHelper.GamePads[PlayerIndex.One].BPressed || XInputHelper.GamePads[PlayerIndex.Two].BPressed)
+            if (XInputHelper.GamePads[PlayerIndex.One].BPressed || XInputHelper.GamePads[PlayerIndex.Two].BPressed || XInputHelper.KeyState.IsKeyDown(Keys.B))
             {
                 if (showInfo)
                 {
@@ -94,12 +98,10 @@ namespace Spacewar
 
             if (showInfo)
             {
-                Texture2D infoTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + @"textures\info_screen");
                 SpriteBatch.Draw(infoTexture, new Vector2(270, 135), null, Color.White);
             }
             else
             {
-                Texture2D buttonTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + @"textures\title_button_overlay");
                 SpriteBatch.Draw(buttonTexture, new Vector2(950, 450), null, Color.White);
             }
 

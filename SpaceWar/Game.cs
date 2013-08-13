@@ -76,7 +76,6 @@ namespace Spacewar
 
         private static PlatformID currentPlatform;
 
-        private static KeyboardState keyState;
         private bool justWentFullScreen;
 
         #region Properties
@@ -139,14 +138,6 @@ namespace Spacewar
                 return currentPlatform;
             }
         }
-
-        public static KeyboardState KeyState
-        {
-            get
-            {
-                return keyState;
-            }
-        }
         #endregion
 
         public SpacewarGame()
@@ -157,7 +148,8 @@ namespace Spacewar
             preferredWindowHeight = FixedDrawingHeight;
             enableDrawScaling = false;
 #else
-            enableDrawScaling = true;
+            //TODO: not functional??
+            //enableDrawScaling = true;
 #endif
 
             this.graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
@@ -216,16 +208,15 @@ namespace Spacewar
 
             GameState changeState = GameState.None;
 
-            keyState = Keyboard.GetState();
-            XInputHelper.Update(this, keyState);
+            XInputHelper.Update(this);
 
-            if ((keyState.IsKeyDown(Keys.RightAlt) || keyState.IsKeyDown(Keys.LeftAlt)) && keyState.IsKeyDown(Keys.Enter) && !justWentFullScreen)
+            if ((XInputHelper.KeyState.IsKeyDown(Keys.RightAlt) || XInputHelper.KeyState.IsKeyDown(Keys.LeftAlt)) && XInputHelper.KeyState.IsKeyDown(Keys.Enter) && !justWentFullScreen)
             {
                 ToggleFullScreen();
                 justWentFullScreen = true;
             }
 
-            if (keyState.IsKeyUp(Keys.Enter))
+            if (XInputHelper.KeyState.IsKeyUp(Keys.Enter))
             {
                 justWentFullScreen = false;
             }

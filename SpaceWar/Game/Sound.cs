@@ -191,9 +191,13 @@ namespace Spacewar
         /// <returns>XACT cue to be used if you want to stop this particular looped sound. Can NOT be ignored.  If the cue returned goes out of scope, the sound stops!!</returns>
         public static Cue Play(Sounds sound)
         {
-            Cue returnValue = soundbank.GetCue(cueNames[(int)sound]);
-            returnValue.Play();
-            return returnValue;
+            if (soundbank != null)
+            {
+                Cue returnValue = soundbank.GetCue(cueNames[(int)sound]);
+                returnValue.Play();
+                return returnValue;
+            }
+            return null;
         }
 
         /// <summary>
@@ -223,7 +227,10 @@ namespace Spacewar
         /// <param name="cue">The cue to stop that you got returned from Play(sound)</param>
         public static void Stop(Cue cue)
         {
-            cue.Stop(AudioStopOptions.Immediate);
+            if (cue != null)
+            {
+                cue.Stop(AudioStopOptions.Immediate);
+            }
         }
 
         /// <summary>

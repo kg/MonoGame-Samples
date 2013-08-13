@@ -25,7 +25,7 @@ namespace Spacewar
     /// </summary>
     public class FullScreenSplash : Screen
     {
-        private string textureName;
+        private Texture2D screenTexture;
         private double timeout;
         private double endTime = -1;
         private GameState nextState = GameState.None;
@@ -56,7 +56,7 @@ namespace Spacewar
 
         private void setTexture(string textureName)
         {
-            this.textureName = textureName;
+            this.screenTexture = SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + textureName);
         }
 
         /// <summary>
@@ -76,7 +76,8 @@ namespace Spacewar
             if (nextState != GameState.None &&
                     ((timeout != 0 && time.TotalSeconds > endTime)
                     || XInputHelper.GamePads[PlayerIndex.One].APressed
-                    || XInputHelper.GamePads[PlayerIndex.Two].APressed))
+                    || XInputHelper.GamePads[PlayerIndex.Two].APressed
+                    || XInputHelper.KeyState.IsKeyDown(Keys.A)))
             {
                 return nextState;
             }
@@ -97,7 +98,7 @@ namespace Spacewar
             SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque);
             device.DepthStencilState = DepthStencilState.DepthRead;
 
-            SpriteBatch.Draw(SpacewarGame.ContentManager.Load<Texture2D>(SpacewarGame.Settings.MediaPath + textureName), Vector2.Zero, null, Color.White);
+            SpriteBatch.Draw(screenTexture, Vector2.Zero, null, Color.White);
 
             SpriteBatch.End();
 
