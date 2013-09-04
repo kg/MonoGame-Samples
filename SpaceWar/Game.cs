@@ -74,8 +74,6 @@ namespace Spacewar
 
         private static Screen currentScreen;
 
-        private static PlatformID currentPlatform;
-
         private bool justWentFullScreen;
 
         #region Properties
@@ -131,17 +129,12 @@ namespace Spacewar
             }
         }
 
-        public static PlatformID CurrentPlatform
-        {
-            get
-            {
-                return currentPlatform;
-            }
-        }
         #endregion
 
         public SpacewarGame()
         {
+            Content.RootDirectory = "Content";
+
 #if XBOX360
             // we might as well use the xbox in all its glory
             preferredWindowWidth = FixedDrawingWidth;
@@ -154,7 +147,8 @@ namespace Spacewar
 
             this.graphics = new Microsoft.Xna.Framework.GraphicsDeviceManager(this);
             this.graphics.PreferredBackBufferWidth = preferredWindowWidth;
-            this.graphics.PreferredBackBufferHeight = preferredWindowHeight;            
+            this.graphics.PreferredBackBufferHeight = preferredWindowHeight;
+            this.graphics.IsFullScreen = true;
 
             // Game should run as fast as possible.
             IsFixedTimeStep = false;
@@ -169,8 +163,6 @@ namespace Spacewar
             //Settings.Save("settings.xml");
 
             settings = Settings.Load("settings.xml");
-
-            currentPlatform = System.Environment.OSVersion.Platform;
 
             //Initialise the sound
             Sound.Initialize();
@@ -284,6 +276,7 @@ namespace Spacewar
             base.Draw(gameTime);
 
             currentScreen.Render();
+
         }
 
         protected override void EndDraw()
@@ -378,6 +371,7 @@ namespace Spacewar
 
                 spriteBatch = new SpriteBatch(graphics.GraphicsDevice);
             }
+            XInputHelper.Touch.Initialise(this);
         }
 
         protected override void UnloadContent()
@@ -414,15 +408,15 @@ namespace Spacewar
                 graphics.PreferredBackBufferWidth = preferredWindowWidth;
                 graphics.PreferredBackBufferHeight = preferredWindowHeight;
             }
-            //else
-            //{
-            //    // going fullscreen, use desktop resolution to minimize display mode changes
-            //    // this also has the nice effect of working around some displays that lie about 
-            //    // supporting 1280x720
-            //    GraphicsAdapter adapter = graphics.GraphicsDevice.Adapter;
-            //    graphics.PreferredBackBufferWidth = adapter.CurrentDisplayMode.Width;
-            //    graphics.PreferredBackBufferHeight = adapter.CurrentDisplayMode.Height;
-            //}
+            else
+            {
+                // going fullscreen, use desktop resolution to minimize display mode changes
+                // this also has the nice effect of working around some displays that lie about 
+                // supporting 1280x720
+                GraphicsAdapter adapter = graphics.GraphicsDevice.Adapter;
+                graphics.PreferredBackBufferWidth = adapter.CurrentDisplayMode.Width;
+                graphics.PreferredBackBufferHeight = adapter.CurrentDisplayMode.Height;
+            }
 
             graphics.ToggleFullScreen();
         }

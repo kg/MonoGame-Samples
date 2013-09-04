@@ -37,11 +37,6 @@
     <MonoGamePlatform>PSM</MonoGamePlatform>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Audio\SpaceWar.xap">
-      <Name>SpaceWar</Name>
-      <Importer>XactImporter</Importer>
-      <Processor>XactProcessor</Processor>
-    </Compile>
     <Compile Include="Models\asteroid1.x">
       <Name>asteroid1</Name>
       <Importer>XImporter</Importer>
@@ -565,6 +560,25 @@
       <Project>{2c23e01d-de2d-4671-85b0-1085857c6d25}</Project>
       <Name>MonoGameContentProcessors</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\SpaceWar.xap">
+      <Name>SpaceWar</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UI\LeftThumbstick.png">
+      <Name>LeftThumbstick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="UI\RightThumbstick.png">
+      <Name>RightThumbstick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--

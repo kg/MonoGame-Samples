@@ -65,10 +65,10 @@ namespace Spacewar
         public override GameState Update(TimeSpan time, TimeSpan elapsedTime)
         {
             //A button makes a player ready. B button makes a player not ready
-            if ((XInputHelper.GamePads[PlayerIndex.One].APressed) || (!XInputHelper.GamePads[PlayerIndex.One].State.IsConnected && SpacewarGame.CurrentPlatform != PlatformID.Win32NT))
+            if ((XInputHelper.GamePads[PlayerIndex.One].APressed))
                 player1Ready = true;
 
-            if ((XInputHelper.GamePads[PlayerIndex.Two].APressed) || (!XInputHelper.GamePads[PlayerIndex.Two].State.IsConnected && SpacewarGame.CurrentPlatform != PlatformID.Win32NT))
+            if ((XInputHelper.GamePads[PlayerIndex.Two].APressed))
                 player2Ready = true;
 
             if (XInputHelper.GamePads[PlayerIndex.One].BPressed)

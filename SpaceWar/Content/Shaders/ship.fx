@@ -56,14 +56,14 @@ sampler Reflection = sampler_state
 
 struct VS_INPUT
 {
-    float4 ObjectPos: POSITION;
+    float4 ObjectPos: SV_POSITION;
     float2 Tex : TEXCOORD0;
     float3 ObjectNormal : NORMAL;
 };
 
 struct VS_OUTPUT 
 {
-   float4 ScreenPos:   POSITION;
+   float4 ScreenPos:   SV_POSITION;
    float2 Tex:   TEXCOORD0;
    float3 WorldNormal: TEXCOORD1;
    float4 PointDirection: COLOR;
@@ -139,8 +139,13 @@ technique Ship
         
         CULLMODE = CCW;
 
-        VertexShader = compile vs_2_0 ShipVS();
-        PixelShader = compile ps_2_0 ShipPS();
+#if SM4		
+		VertexShader = compile vs_4_0_level_9_1 ShipVS();
+		PixelShader = compile ps_4_0_level_9_1 ShipPS();
+#else
+		VertexShader = compile vs_2_0 ShipVS();
+		PixelShader = compile ps_2_0 ShipPS();
+#endif
    }
 
 }

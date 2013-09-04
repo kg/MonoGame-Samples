@@ -48,13 +48,13 @@ namespace Spacewar
         public override GameState Update(TimeSpan time, TimeSpan elapsedTime)
         {
             //X displays the intro screen
-            if (XInputHelper.GamePads[PlayerIndex.One].XPressed || XInputHelper.GamePads[PlayerIndex.Two].XPressed || XInputHelper.KeyState.IsKeyDown(Keys.X))
+            if (XInputHelper.GamePads[PlayerIndex.One].XPressed || XInputHelper.GamePads[PlayerIndex.Two].XPressed || XInputHelper.Keyboard.IsKeyPressed(Keys.X))
             {
                 showInfo = true;
             }
 
             //B plays retro or cancels info screen
-            if (XInputHelper.GamePads[PlayerIndex.One].BPressed || XInputHelper.GamePads[PlayerIndex.Two].BPressed || XInputHelper.KeyState.IsKeyDown(Keys.B))
+            if (XInputHelper.GamePads[PlayerIndex.One].BPressed || XInputHelper.GamePads[PlayerIndex.Two].BPressed || XInputHelper.Keyboard.IsKeyPressed(Keys.B))
             {
                 if (showInfo)
                 {

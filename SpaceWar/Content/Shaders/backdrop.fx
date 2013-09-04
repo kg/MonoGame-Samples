@@ -47,14 +47,14 @@ sampler stars = sampler_state
 
 struct VS_OUTPUT
 {
-	float4 pos : POSITION;
+	float4 pos : SV_POSITION;
 	float2 tex0 : TEXCOORD0;
 	float2 tex1 : TEXCOORD1;
 	float2 tex2 : TEXCOORD2;
 };
 
 //vertex shader
-VS_OUTPUT backdropVS(float4 Pos : POSITION)
+VS_OUTPUT backdropVS(float4 Pos : SV_POSITION)
 {
 	VS_OUTPUT Out = (VS_OUTPUT)0;
 	
@@ -92,9 +92,13 @@ technique RenderBackdrop
 	{
 		CULLMODE = NONE;
 		ZWRITEENABLE = FALSE;
-		
+#if SM4		
+		VertexShader = compile vs_4_0_level_9_1 backdropVS();
+		PixelShader = compile ps_4_0_level_9_1 backdropPS();
+#else
 		VertexShader = compile vs_2_0 backdropVS();
 		PixelShader = compile ps_2_0 backdropPS();
+#endif
 	}
 }
 

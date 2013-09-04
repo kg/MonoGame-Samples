@@ -92,10 +92,10 @@ namespace Spacewar
         /// <returns></returns>
         public override GameState Update(TimeSpan time, TimeSpan elapsedTime)
         {
-            if ((XInputHelper.GamePads[PlayerIndex.One].APressed) || (!XInputHelper.GamePads[PlayerIndex.One].State.IsConnected && SpacewarGame.CurrentPlatform != PlatformID.Win32NT))
+            if ((XInputHelper.GamePads[PlayerIndex.One].APressed) )
                 player1Ready = true;
 
-            if ((XInputHelper.GamePads[PlayerIndex.Two].APressed) || (!XInputHelper.GamePads[PlayerIndex.Two].State.IsConnected && SpacewarGame.CurrentPlatform != PlatformID.Win32NT))
+            if ((XInputHelper.GamePads[PlayerIndex.Two].APressed) )
                 player2Ready = true;
 
             if (XInputHelper.GamePads[PlayerIndex.One].BPressed)

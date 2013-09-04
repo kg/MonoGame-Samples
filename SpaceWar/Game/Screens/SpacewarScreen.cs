@@ -33,6 +33,19 @@ namespace Spacewar
         {
         }
 
+        public override GameState Update(TimeSpan time, TimeSpan elapsedTime)
+        {
+            XInputHelper.Touch.Update();
+
+            return base.Update(time, elapsedTime);
+        }
+
+        public override void Render()
+        {
+            base.Render();
+
+            XInputHelper.Touch.Draw(SpriteBatch);
+        }
 
         /// <summary>
         /// Checks for collisions between objects

@@ -30,7 +30,7 @@ namespace Spacewar
         /// <summary>
         /// The path to look for all media in
         /// </summary>
-        public string MediaPath = @"";
+        public string MediaPath = @"Content\";
 
         /// <summary>
         /// The name of the window when running in windowed mode
@@ -371,11 +371,11 @@ namespace Spacewar
         /// <param name="filename">The filename to save to</param>
         public void Save(string filename)
         {
-            Stream stream = File.Create(filename);
+            //Stream stream = File.Create(filename);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-            serializer.Serialize(stream, this);
-            stream.Close();
+            //XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            //serializer.Serialize(stream, this);
+            //stream.Close();
         }
 
         /// <summary>
@@ -384,9 +384,10 @@ namespace Spacewar
         /// <param name="filename">The filename to load</param>
         public static Settings Load(string filename)
         {
-            Stream stream = File.OpenRead(filename);
-            XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-            return (Settings)serializer.Deserialize(stream);
+            //Stream stream = File.OpenRead(filename);
+            //XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+            //return (Settings)serializer.Deserialize(stream);
+            return new Settings();
         }
         #endregion
     }

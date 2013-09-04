@@ -22,8 +22,10 @@ namespace Spacewar
         /// <summary>
         /// Current pressed state of the gamepads
         /// </summary>
-        private static GamePads gamePads = new GamePads();
         private static KeyboardState keyState;
+        private static GamePads gamePads = new GamePads();
+        private static KeyboardHelper keyboard = new KeyboardHelper();
+        private static TouchUI touch = new TouchUI();
 
 
         #region Properties
@@ -41,6 +43,20 @@ namespace Spacewar
                 return keyState;
             }
         }
+        public static KeyboardHelper Keyboard
+        {
+            get
+            {
+                return keyboard;
+            }
+        }
+        public static TouchUI Touch
+        {
+            get
+            {
+                return touch;
+            }
+        }
         #endregion
 
         /// <summary>
@@ -48,7 +64,8 @@ namespace Spacewar
         /// </summary>
         public static void Update(Game game)
         {
-            keyState = Keyboard.GetState();
+            keyState = Microsoft.Xna.Framework.Input.Keyboard.GetState();
+            keyboard.Update(game, keyState);
             gamePads.Update(game, keyState);
         }
     }

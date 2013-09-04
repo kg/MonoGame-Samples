@@ -157,7 +157,7 @@ namespace Spacewar
             this.evolved = true;
 
             //Evolved needs scaling
-            scale = new Vector3(SpacewarGame.Settings.ShipScale, SpacewarGame.Settings.ShipScale, SpacewarGame.Settings.ShipScale);
+            scale = new Vector3(SpacewarGame.Settings.ShipScale);
             rotation = new Vector3(MathHelper.ToRadians(90), 0, 0);
             direction = new Vector3((float)(-Math.Sin(Rotation.Z)), (float)(Math.Cos(Rotation.Z)), 0);
 
@@ -285,12 +285,15 @@ namespace Spacewar
                 {
                     //Only move ship if we are out of hyperspace and recovery from destruction
                     rotation.Z -= (float)((double)XInputHelper.GamePads[player].ThumbStickLeftX * elapsedTime.TotalSeconds * 3.0);
+                    rotation.Z -= (float)((double)XInputHelper.Touch.GetStickMovement(player).X * elapsedTime.TotalSeconds * 3.0);
 
-                    if (XInputHelper.GamePads[player].ThumbStickLeftY != 0)
+                    if (XInputHelper.GamePads[player].ThumbStickLeftY != 0 || XInputHelper.Touch.GetStickMovement(player).Y != 0)
                     {
                         if (!playingThrustSound)
                         {
+#if !NETFX_CORE
                             GamePad.SetVibration(player, .8f, .2f);
+#endif
 
                             if (player == PlayerIndex.One)
                             {
@@ -312,7 +315,7 @@ namespace Spacewar
                         if (thrustFrame > 12)
                             thrustFrame = 12;
 
-                        float factor = XInputHelper.GamePads[player].ThumbStickLeftY;
+                        float factor = XInputHelper.GamePads[player].ThumbStickLeftY + XInputHelper.Touch.GetStickMovement(player).Y;
                         Vector2 thrustDirection = new Vector2((float)(-SpacewarGame.Settings.ThrustPower * factor * Math.Sin(Rotation.Z)), (float)(SpacewarGame.Settings.ThrustPower * factor * Math.Cos(Rotation.Z)));
                         acceleration += new Vector3(thrustDirection.X, thrustDirection.Y, 0);
                     }
@@ -328,8 +331,9 @@ namespace Spacewar
 
                         if (playingThrustSound)
                         {
+#if !NETFX_CORE
                             GamePad.SetVibration(player, 0, 0);
-
+#endif
                             Sound.Stop(cue);
                             playingThrustSound = false;
                         }
@@ -376,8 +380,10 @@ namespace Spacewar
             {
                 Sound.Stop(cue);
                 playingThrustSound = false;
+#if !NETFX_CORE
                 GamePad.SetVibration(player, 0, 0);
-            }
+#endif
+                }
         }
 
         public override void OnCreateDevice()

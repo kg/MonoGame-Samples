@@ -240,7 +240,7 @@ namespace Spacewar
         {
             engine = new AudioEngine(SpacewarGame.Settings.MediaPath + @"audio\spacewar.xgs");
             wavebank = new WaveBank(engine, SpacewarGame.Settings.MediaPath + @"audio\spacewar.xwb");
-            //soundbank = new SoundBank(engine, SpacewarGame.Settings.MediaPath + @"audio\spacewar.xsb");
+            soundbank = new SoundBank(engine, SpacewarGame.Settings.MediaPath + @"audio\spacewar.xsb");
         }
 
         /// <summary>

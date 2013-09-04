@@ -10,13 +10,13 @@ float4x4 worldViewProjection;
 
 struct VS_INPUT
 {
-    float4 ObjectPos: POSITION;
+    float4 ObjectPos: SV_POSITION;
     float4 VertexColor: COLOR;
 };
 
 struct VS_OUTPUT 
 {
-   float4 ScreenPos:   POSITION;
+   float4 ScreenPos:   SV_POSITION;
    float4 VertexColor: COLOR;
 };
 
@@ -44,8 +44,13 @@ technique Simple
 {
    pass Single_Pass
    {
-        VertexShader = compile vs_2_0 SimpleVS();
-        PixelShader = compile ps_2_0 SimplePS();
+#if SM4		
+		VertexShader = compile vs_4_0_level_9_1 SimpleVS();
+		PixelShader = compile ps_4_0_level_9_1 SimplePS();
+#else
+		VertexShader = compile vs_2_0 SimpleVS();
+		PixelShader = compile ps_2_0 SimplePS();
+#endif
    }
 
 }

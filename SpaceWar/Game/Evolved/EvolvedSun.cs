@@ -88,9 +88,13 @@ namespace Spacewar
 
             base.Render();
 
-            device.SetVertexBuffer(buffer);           
+            device.SetVertexBuffer(buffer);
 
-            worldParam.SetValue(World);
+            if (worldParam != null)
+            {
+                worldParam.SetValue(World);
+            }
+            
             worldViewProjectionParam.SetValue(World * SpacewarGame.Camera.View * SpacewarGame.Camera.Projection);
 
             float currentFactor = (float)(currentTime / 1000.0f);

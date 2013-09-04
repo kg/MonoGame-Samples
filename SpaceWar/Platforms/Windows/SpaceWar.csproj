@@ -8,8 +8,8 @@
     <ProjectGuid>{3078F3FC-5D65-42CC-96AC-0C28FE1D2D8B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample</RootNamespace>
-    <AssemblyName>Sample</AssemblyName>
+    <RootNamespace>SpaceWar</RootNamespace>
+    <AssemblyName>SpaceWar</AssemblyName>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -35,9 +35,6 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Game.cs">
-      <Link>Game.cs</Link>
-    </Compile>
     <Compile Include="..\..\Game\Asteroid.cs">
       <Link>Game\Asteroid.cs</Link>
     </Compile>
@@ -152,6 +149,21 @@
     <Compile Include="..\..\Game\Sun.cs">
       <Link>Game\Sun.cs</Link>
     </Compile>
+    <Compile Include="..\..\Game\Common\KeyboardHelper.cs">
+      <Link>Game\Common\KeyboardHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Game\Common\TouchUI.cs" >
+      <Link>Game\Common\TouchUI.cs</Link>
+    </Compile>
+    <Content Include="..\..\settings.xml">
+      <Link>settings.xml</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>	
+  </ItemGroup>
+  <ItemGroup>	
+	<Compile Include="..\..\Game.cs">
+      <Link>Game.cs</Link>
+    </Compile>
     <Compile Include="..\..\Program.cs">
       <Link>Program.cs</Link>
     </Compile>
@@ -172,10 +184,6 @@
       <Link>SDL.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\settings.xml">
-      <Link>settings.xml</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -189,18 +197,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\SpaceWar.xgs">
-      <Link>Content\Audio\SpaceWar.xgs</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spacewar.xsb">
-      <Link>Content\Audio\spacewar.xsb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\spacewar.xwb">
-      <Link>Content\Audio\spacewar.xwb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Fonts\health.xnb">
       <Link>Content\Fonts\health.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -643,6 +639,26 @@
     </Content>
     <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\textures\wedge_p2_diff_v3.xnb">
       <Link>Content\textures\wedge_p2_diff_v3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\UI\LeftThumbstick.xnb">
+      <Link>Content\UI\LeftThumbstick.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\UI\RightThumbstick.xnb">
+      <Link>Content\UI\RightThumbstick.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\SpaceWar.xgs">
+      <Link>Content\Audio\SpaceWar.xgs</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\SpaceWar.xsb">
+      <Link>Content\Audio\SpaceWar.xsb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\ContentBuilder\bin\Windows\Content\Audio\SpaceWar.xwb">
+      <Link>Content\Audio\SpaceWar.xwb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

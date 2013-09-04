@@ -77,7 +77,7 @@ namespace Spacewar
                     ((timeout != 0 && time.TotalSeconds > endTime)
                     || XInputHelper.GamePads[PlayerIndex.One].APressed
                     || XInputHelper.GamePads[PlayerIndex.Two].APressed
-                    || XInputHelper.KeyState.IsKeyDown(Keys.A)))
+                    || XInputHelper.Keyboard.IsKeyPressed(Keys.A)))
             {
                 return nextState;
             }

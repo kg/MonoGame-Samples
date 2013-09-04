@@ -34,12 +34,12 @@ sampler Sun1 = sampler_state
 
 struct VS_OUTPUT 
 {
-   float4 Pos:   POSITION;
+   float4 Pos:   SV_POSITION;
    float2 tex:   TEXCOORD0;
    float2 tex1:  TEXCOORD1;
 };
 
-VS_OUTPUT SunVS(float4 Pos: POSITION)
+VS_OUTPUT SunVS(float4 Pos: SV_POSITION)
 {
    VS_OUTPUT Out;
 
@@ -76,8 +76,13 @@ technique Sun
       DESTBLEND = INVSRCALPHA;
       ZENABLE = FALSE; //Always want this on top
 
-      VertexShader = compile vs_2_0 SunVS();
-      PixelShader = compile ps_2_0 SunPS();
+#if SM4		
+		VertexShader = compile vs_4_0_level_9_1 SunVS();
+		PixelShader = compile ps_4_0_level_9_1 SunPS();
+#else
+		VertexShader = compile vs_2_0 SunVS();
+		PixelShader = compile ps_2_0 SunPS();
+#endif
    }
 
 }
