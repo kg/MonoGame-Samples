@@ -1,0 +1,19 @@
+#canvas {
+	left: 2px;
+	top: 2px;
+}
+#loadingProgress {
+	width: 306px;
+	height: 40px;
+	left: 244px;
+	top: 218px;
+}
+#progressBar {
+	height: 40px;
+}
+#log {
+	width: 800px;
+	height: 150px;
+	left: 2px;
+	top: 482px;
+}

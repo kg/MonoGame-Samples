@@ -1,0 +1,46 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <title>Platformer2D MonoGame Sample</title>
+
+    <link rel="stylesheet" href="../browser.css">
+    <link rel="stylesheet" href="index.css">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  </head>
+  <body onload="onLoad()">
+    <script type="text/javascript">
+      var jsilConfig = {
+        monogame: true,
+        // for performance
+        suppressGLErrors: true,
+
+        manifests: [
+          "Platformer2D.exe",
+          "Files/Platformer2D.csproj"
+        ],
+
+        showProgressBar: true,
+        
+        readOnlyStorage: true,
+
+        scriptRoot: "",
+        libraryRoot: "../Libraries/",
+        fileRoot: "Files/",
+        fileVirtualRoot: ""
+      };
+    </script>
+    <script src="../Libraries/JSIL.js" type="text/javascript"></script>    
+    
+    <canvas id="canvas" width="800" height="480">
+    </canvas><br>    
+    <div id="log"><p>This is the <a href="http://www.monogame.net/">MonoGame</a> Platformer2D sample, compiled using <a href="http://jsil.org/">JSIL</a> and an <a href="https://github.com/kg/MonoGame/tree/JSIL">experimental browser version of MonoGame</a>.</p></div>
+    
+    <script type="text/javascript">      
+      function runMain () {
+        var asm = JSIL.GetAssembly("Platformer2D");
+        JSIL.InvokeEntryPoint(asm);
+      };
+    </script>
+  </body>
+</html>
