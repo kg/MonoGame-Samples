@@ -73,7 +73,7 @@ namespace Platformer2D
 			/// </summary>
 			static void Main()
 			{
-	#if WINDOWS || LINUX || PSM
+	#if WINDOWS || LINUX || PSM || JSIL
 				using (var game = new PlatformerGame())
 					game.Run();
 
