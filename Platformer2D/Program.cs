@@ -73,11 +73,12 @@ namespace Platformer2D
 			/// </summary>
 			static void Main()
 			{
-	#if WINDOWS || LINUX || PSM || JSIL
+	#if WINDOWS || LINUX || PSM
 				using (var game = new PlatformerGame())
 					game.Run();
-
-	#else
+    #elif JSIL
+                (new PlatformerGame()).Run();
+    #else
 				var factory = new MonoGame.Framework.GameFrameworkViewSource<PlatformerGame>();
 				Windows.ApplicationModel.Core.CoreApplication.Run(factory);
 	#endif
